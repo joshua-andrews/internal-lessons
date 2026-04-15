@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack AI Systems Architect — Session 1: Ideation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8FAFC;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --accent: #7C3AED;
+            --accent-light: #F5F3FF;
+            --card-bg: #FFFFFF;
+            --shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bg1 {
+            position: absolute; top: -10%; right: -5%;
+            width: 600px; height: 600px; border-radius: 50%; z-index: -1;
+            background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
+        }
+        .bg2 {
+            position: absolute; bottom: -10%; left: -5%;
+            width: 500px; height: 500px; border-radius: 50%; z-index: -1;
+            background: radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%);
+        }
+        #deck {
+            width: 100%; max-width: 1100px;
+            height: 100%; max-height: 780px;
+            padding: 2.5rem;
+        }
+        .slide {
+            display: none; width: 100%; height: 100%;
+            animation: fadeUp 0.45s cubic-bezier(0.16,1,0.3,1);
+            align-items: center; justify-content: center;
+        }
+        .slide.active { display: flex; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .wrap { width: 100%; max-width: 860px; display: flex; flex-direction: column; }
+        .wrap.center { text-align: center; align-items: center; }
+        h1 { font-size: 3.6rem; font-weight: 800; letter-spacing: -.05em; color: #0F172A; }
+        h2 { font-size: 2.4rem; font-weight: 700; letter-spacing: -.03em; }
+        h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: .4rem; }
+        p  { font-size: 1.05rem; line-height: 1.65; color: var(--text-secondary); margin-bottom: .75rem; }
+        .pill {
+            background: var(--accent-light); color: var(--accent);
+            padding: .45rem 1rem; border-radius: 20px;
+            font-weight: 600; text-transform: uppercase; font-size: .82rem;
+            margin-bottom: 1.4rem; display: inline-block;
+        }
+        .subtitle { font-size: 1.2rem; font-weight: 500; color: var(--text-secondary); margin-top: .5rem; }
+        .date { font-size: 1.15rem; font-weight: 500; color: var(--text-secondary); }
+        .divider { width: 56px; height: 4px; background: var(--accent); margin: 1.8rem 0; border-radius: 2px; }
+        .shead {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #E2E8F0; padding-bottom: 1rem; margin-bottom: 2rem;
+        }
+        .stag { font-weight: 600; color: var(--text-secondary); font-size: .95rem; }
+        .stag.purple { color: #7C3AED; }
+        .stag.green  { color: #059669; }
+        .stag.amber  { color: #D97706; }
+        .stag.blue   { color: #2563EB; }
+        .stag.rose   { color: #E11D48; }
+        .card {
+            background: var(--card-bg); padding: 2rem 2.5rem;
+            border-radius: 16px; box-shadow: var(--shadow);
+            border: 1px solid #E2E8F0;
+        }
+        .card + .card { margin-top: 1.25rem; }
+        .card.purple { border-left: 5px solid #7C3AED; }
+        .card.green  { border-left: 5px solid #10B981; }
+        .card.amber  { border-left: 5px solid #F59E0B; }
+        .card.blue   { border-left: 5px solid #2563EB; }
+        .card.rose   { border-left: 5px solid #E11D48; }
+        .card-head   { display: flex; align-items: center; gap: .9rem; margin-bottom: .6rem; }
+        .badge {
+            padding: .25rem .75rem; border-radius: 6px;
+            font-size: .78rem; font-weight: 700; text-transform: uppercase;
+        }
+        .badge.purple { background: #F3E8FF; color: #6B21A8; }
+        .badge.green  { background: #D1FAE5; color: #065F46; }
+        .badge.amber  { background: #FEF3C7; color: #92400E; }
+        .badge.blue   { background: #DBEAFE; color: #1E40AF; }
+        .badge.rose   { background: #FFE4E6; color: #9F1239; }
+        .desc { color: var(--text-secondary); margin-bottom: 1rem; font-size: 1rem; }
+        ul.bullets { list-style: none; margin-top: .75rem; }
+        ul.bullets li {
+            padding-left: 1.5rem; position: relative;
+            margin-bottom: .6rem; font-size: .98rem; line-height: 1.55;
+        }
+        ul.bullets li::before { content:"•"; color: var(--accent); position: absolute; left:0; font-weight:bold; }
+        ul.sub { margin-top: .4rem; margin-left: 1rem; }
+        ul.sub li { font-size: .92rem; color: var(--text-secondary); }
+        ul.sub li::before { color: #94A3B8; }
+        .icon-head { font-size: 1.05rem; font-weight: 700; margin-bottom: .75rem; color: var(--text-primary); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        .schedule-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: .85rem 0; border-bottom: 1px solid #F1F5F9;
+        }
+        .schedule-item:last-child { border-bottom: none; }
+        .schedule-label { font-weight: 600; font-size: .98rem; }
+        .schedule-date { font-size: .92rem; color: var(--text-secondary); font-weight: 500; }
+        .schedule-item.active .schedule-label { color: var(--accent); }
+        .schedule-item.active .schedule-date {
+            background: var(--accent-light); color: var(--accent);
+            padding: .2rem .65rem; border-radius: 6px; font-weight: 600;
+        }
+        .number-item {
+            display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem;
+        }
+        .number-item:last-child { margin-bottom: 0; }
+        .num-circle {
+            min-width: 34px; height: 34px; border-radius: 50%;
+            background: var(--accent-light); color: var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: .9rem; margin-top: 2px;
+        }
+        .num-content h3 { font-size: 1.05rem; margin-bottom: .25rem; }
+        .num-content p { font-size: .92rem; margin-bottom: 0; }
+        .controls {
+            position: fixed; bottom: 2rem; right: 2rem;
+            display: flex; align-items: center; gap: 1.4rem;
+            background: white; padding: .7rem 1.4rem;
+            border-radius: 50px; box-shadow: var(--shadow);
+            border: 1px solid #E2E8F0; z-index: 100;
+        }
+        .nav-btn {
+            background: none; border: none; font-size: .88rem;
+            font-weight: 600; color: var(--text-primary); cursor: pointer; transition: color .2s;
+        }
+        .nav-btn:hover { color: var(--accent); }
+        #indicator { font-size: .88rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body>
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+
+    <main id="deck">
+
+        <!-- Slide 1: Title -->
+        <section class="slide active" id="s1">
+            <div class="wrap center">
+                <span class="pill">Copy Culture</span>
+                <h1>Full-Stack AI<br>Systems Architect</h1>
+                <p class="subtitle">Session 1: Ideation — The Foundation</p>
+                <p class="date">March 31, 2026</p>
+                <div class="divider"></div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Welcome & Overview -->
+        <section class="slide" id="s2">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>Welcome</h2>
+                    <span class="stag purple">Course Overview</span>
+                </div>
+                <div class="card purple">
+                    <div class="card-head">
+                        <span class="badge purple">Intensive Series</span>
+                        <h3>From Concepts to Launch</h3>
+                    </div>
+                    <p class="desc">Over the next few weeks, you will transition from ideas to launching full-scale applications. This course is fast-paced and results-oriented.</p>
+                    <ul class="bullets">
+                        <li>You will learn to ideate, design, integrate, test, and ship.</li>
+                        <li>Each session builds directly on the previous one — no gaps.</li>
+                        <li>By April 17, you will have a production-ready application live.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Course Schedule -->
+        <section class="slide" id="s3">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>Course Schedule</h2>
+                    <span class="stag blue">Important Dates</span>
+                </div>
+                <div class="card blue">
+                    <div class="schedule-item active">
+                        <span class="schedule-label">Session 1 — Ideation</span>
+                        <span class="schedule-date">March 31 (Today)</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-label">Session 2 — Figma & Google Stitch Tutorial</span>
+                        <span class="schedule-date">April 2</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-label">Session 3 — Integration and Logic</span>
+                        <span class="schedule-date">April 7</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-label">Session 4 — Bug Testing</span>
+                        <span class="schedule-date">April 9</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-label">Project Week</span>
+                        <span class="schedule-date">April 13 – 17</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-label">🚀 Production Launch</span>
+                        <span class="schedule-date">April 17</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Lesson 1 Intro -->
+        <section class="slide" id="s4">
+            <div class="wrap center">
+                <span class="pill">Lesson 1</span>
+                <h1 style="font-size: 3rem;">Ideation</h1>
+                <p class="subtitle" style="max-width: 640px;">Today is about building the foundation of your app. Before we touch a single line of code or design element, we have to establish the "Why."</p>
+                <div class="divider"></div>
+                <p style="max-width: 580px; text-align: center;">This lesson is not about design — it is about <strong style="color: var(--text-primary);">purpose</strong>. We need to define exactly what we are building and the specific problem it solves.</p>
+            </div>
+        </section>
+
+        <!-- Slide 5: Research & Insight -->
+        <section class="slide" id="s5">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>Research & Insight</h2>
+                    <span class="stag purple">Topic 1</span>
+                </div>
+                <div class="card purple" style="margin-bottom: 1.25rem;">
+                    <div class="icon-head">When starting a project, your research determines your ceiling.</div>
+                    <ul class="bullets">
+                        <li><strong>The AI Limit:</strong> ChatGPT is a powerful tool, but it often provides surface-level information. It can summarize known facts, but it lacks the nuance of real-world application.</li>
+                        <li><strong>The Power of Experience:</strong> Experience is your best teacher. If you are relatively new, you need to borrow the experience of others.</li>
+                        <li><strong>Deep Dives via YouTube:</strong> YouTube is an incredible resource for seeing exactly how systems work in the wild. Ask ChatGPT to find specific tutorials or case studies related to the workflow you are researching.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Interactive Exercise -->
+        <section class="slide" id="s6">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>Interactive Exercise</h2>
+                    <span class="stag green">Hands-On</span>
+                </div>
+                <div class="grid-2">
+                    <div class="card green">
+                        <div class="card-head">
+                            <span class="badge green">Question 1</span>
+                        </div>
+                        <h3>Client Workflow</h3>
+                        <p class="desc">In your experience, how do you think clients currently request work from us?</p>
+                    </div>
+                    <div class="card green">
+                        <div class="card-head">
+                            <span class="badge green">Question 2</span>
+                        </div>
+                        <h3>The Full Picture</h3>
+                        <p class="desc">What does that workflow actually look like from start to finish?</p>
+                    </div>
+                </div>
+                <div class="card amber" style="margin-top: 1.25rem;">
+                    <div class="card-head">
+                        <span class="badge amber">Task</span>
+                        <h3>Pros & Cons Analysis</h3>
+                    </div>
+                    <p class="desc">Open a Google Doc and list the pros and cons of the current messaging method. Is it efficient? Where does communication break down?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: The MVP -->
+        <section class="slide" id="s7">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>The MVP</h2>
+                    <span class="stag amber">Topic 2</span>
+                </div>
+                <div class="card amber">
+                    <div class="card-head">
+                        <span class="badge amber">MVP</span>
+                        <h3>Function Before Form</h3>
+                    </div>
+                    <p class="desc">In development, we often get distracted by "shiny object syndrome." We want every feature at once.</p>
+                    <ul class="bullets">
+                        <li>The MVP is the most basic version of your product that still solves the core problem.</li>
+                        <li>Our goal is to ensure the app serves its <strong>primary function first</strong>.</li>
+                        <li>We prioritize functionality now and focus on making it beautiful later.</li>
+                        <li>If the core logic doesn't work, a pretty interface won't save it.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: The Prompt -->
+        <section class="slide" id="s8">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>The Prompt</h2>
+                    <span class="stag blue">Topic 3</span>
+                </div>
+                <div class="card blue">
+                    <div class="card-head">
+                        <span class="badge blue">Google Stitch</span>
+                        <h3>Talking to the AI</h3>
+                    </div>
+                    <p class="desc">Once we know the purpose and the MVP, we need to translate that into a language the AI understands. We will create a master prompt that tells Google Stitch exactly how to build our design.</p>
+                    <ul class="bullets">
+                        <li>Your first draft can be messy. Do not worry about perfect grammar yet.</li>
+                        <li>To get your ideas out faster, consider using <strong>Wispr Flow</strong> or <strong>iPhone Voice Notes</strong>.</li>
+                        <li>Simply record your thoughts and copy/paste the transcript.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: The 5-Question Framework -->
+        <section class="slide" id="s9">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>The 5-Question Framework</h2>
+                    <span class="stag purple">Core Method</span>
+                </div>
+                <div class="card purple">
+                    <div class="number-item">
+                        <div class="num-circle">1</div>
+                        <div class="num-content">
+                            <h3>The Build</h3>
+                            <p>What exactly are we building?</p>
+                        </div>
+                    </div>
+                    <div class="number-item">
+                        <div class="num-circle">2</div>
+                        <div class="num-content">
+                            <h3>The Purpose</h3>
+                            <p>What is the ultimate goal of this tool?</p>
+                        </div>
+                    </div>
+                    <div class="number-item">
+                        <div class="num-circle">3</div>
+                        <div class="num-content">
+                            <h3>The Delta</h3>
+                            <p>What are the pros and cons of the current system? If no system exists, what makes ours unique?</p>
+                        </div>
+                    </div>
+                    <div class="number-item">
+                        <div class="num-circle">4</div>
+                        <div class="num-content">
+                            <h3>The Core</h3>
+                            <p>What are the "must-have" features for the MVP?</p>
+                        </div>
+                    </div>
+                    <div class="number-item">
+                        <div class="num-circle">5</div>
+                        <div class="num-content">
+                            <h3>The Vibe</h3>
+                            <p>This is your opportunity to say any details that are just in your head that you want to see — while still keeping it fundamentally simple.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Homework -->
+        <section class="slide" id="s10">
+            <div class="wrap">
+                <div class="shead">
+                    <h2>Homework Assignment</h2>
+                    <span class="stag rose">Due April 2</span>
+                </div>
+                <div class="card rose">
+                    <div class="card-head">
+                        <span class="badge rose">Assignment</span>
+                        <h3>Create Your Google Stitch Prompt</h3>
+                    </div>
+                    <p class="desc">Create a comprehensive prompt for Google Stitch to generate your initial design.</p>
+                    <ul class="bullets">
+                        <li>Use the <strong>5-Question Framework</strong> to guide your writing.</li>
+                        <li>Your prompt should be <strong>500 – 1,000 words</strong>.</li>
+                        <li>Ensure your prompt clearly defines the functionality of your MVP.</li>
+                        <li>You can write it in Spanish first and translate to English after — that's perfectly fine.</li>
+                        <li>We will be using these prompts in our next session on <strong>April 2nd</strong> to begin the design phase.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Questions -->
+        <section class="slide" id="s11">
+            <div class="wrap center">
+                <span class="pill">End of Session 1</span>
+                <h1>Questions?</h1>
+                <p class="subtitle">Next up: Figma & Google Stitch Tutorial — April 2</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="controls">
+        <button id="prev-btn" class="nav-btn">← Prev</button>
+        <span id="indicator">1 / 11</span>
+        <button id="next-btn" class="nav-btn">Next →</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const indicator = document.getElementById('indicator');
+        let cur = 0;
+        function go(n) {
+            slides[cur].classList.remove('active');
+            cur = Math.max(0, Math.min(n, slides.length - 1));
+            slides[cur].classList.add('active');
+            indicator.textContent = (cur + 1) + ' / ' + slides.length;
+        }
+        document.getElementById('next-btn').addEventListener('click', () => go(cur + 1));
+        document.getElementById('prev-btn').addEventListener('click', () => go(cur - 1));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === ' ') go(cur + 1);
+            if (e.key === 'ArrowLeft') go(cur - 1);
+        });
+    </script>
+</body>
+</html>
