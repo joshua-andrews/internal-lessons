@@ -283,8 +283,15 @@
                     <div class="card amber">
                         <h3>6. Enum <span class="badge grey" style="text-transform:lowercase;">enum</span></h3>
                         <p class="desc">Restricted to a pre-defined list of options.</p>
-                        <p class="desc" style="font-family:monospace; color:#0F172A;">STATUS = "IN_PROGRESS"</p>
-                        <p class="desc" style="font-size: .85rem;"><strong>Use when:</strong> There is a fixed list of valid choices (e.g. dropdown menu).</p>
+                        <p class="desc" style="font-family:monospace; color:#0F172A; font-size:.9rem; line-height: 1.4;">
+                            STATUS = "IN_PROGRESS"<br>
+                            <span style="color:#64748B; font-size:.8rem;">↳ Can ONLY be: IN_PROGRESS, IN_REVIEW, APPROVED</span>
+                        </p>
+                        <p class="desc" style="font-family:monospace; color:#0F172A; font-size:.9rem; line-height: 1.4; margin-top: .6rem;">
+                            SELECTED_PLAN = "TURBO"<br>
+                            <span style="color:#64748B; font-size:.8rem;">↳ Can ONLY be: GRAPHICS, ALPHA, TURBO, ULTRA</span>
+                        </p>
+                        <p class="desc" style="font-size: .85rem;"><strong>Use when:</strong> There is a fixed list of valid choices.</p>
                     </div>
                     <div class="card rose">
                         <h3>7. Timestamp <span class="badge grey" style="text-transform:lowercase;">timestamp</span></h3>
